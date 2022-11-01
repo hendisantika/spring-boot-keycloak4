@@ -1,9 +1,12 @@
 package com.hendisantika.service;
 
+import com.hendisantika.entity.Plant;
 import com.hendisantika.repository.PlantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 /**
  * Created by IntelliJ IDEA.
@@ -21,4 +24,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class PlantService {
 
     private final PlantRepository plantRepository;
+
+    public Plant getPlant(long plantId) throws RuntimeException {
+        Optional<Plant> plantOpt = plantRepository.findById(plantId);
+        if (plantOpt.isEmpty()) {
+            throw new RuntimeException("Plant could not be found with id : " + plantId);
+        }
+
+        return plantOpt.get();
+    }
 }
