@@ -2,7 +2,7 @@ version: "3.9"
 services:
   postgres:
     container_name: postgres_blog
-    image: "postgres:15-bullseye"
+    image: "postgres:16-bullseye"
     volumes:
       - ./db-data:/var/lib/postgresql/data/
       - ./sql:/docker-entrypoint-initdb.d/:ro
@@ -23,7 +23,7 @@ services:
       - backend
   keycloak:
     container_name: keycloak_blog
-    image: "jboss/keycloak:19.0.2"
+    image: "jboss/keycloak:24.0.1"
     depends_on:
       - "postgres"
     env_file:
